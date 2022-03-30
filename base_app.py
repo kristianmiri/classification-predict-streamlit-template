@@ -36,7 +36,6 @@ from textblob import TextBlob    #for spelling correction
 
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
 import matplotlib.pyplot as plt
-%matplotlib inline
 import seaborn as sns
 
 
@@ -54,7 +53,7 @@ news_vectorizer = open("resources/tfidfvect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
-raw = pd.read_csv("resources/train.csv")
+df_train = pd.read_csv("resources/train.csv")
 
 # The main function where we will build the actual app
 def main():
@@ -89,7 +88,13 @@ def main():
 
 		""")
 
-# Building out the "About Us" page
+	#Building the "Data Visualization" page
+	if selection == "Data Visualization":
+		st.write("""###Data Visualisation""")
+
+
+
+	# Building out the "About Us" page
 	if selection == "About Us":
 		st.write("""### PLICC Analytics""")
 		#Company logo
@@ -120,7 +125,7 @@ def main():
 
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
-			st.write(raw[['sentiment', 'message']]) # will write the df to the page
+			st.write(df_train[['sentiment', 'message']]) # will write the df to the page
 
 	# Building out the prediction page
 	if selection == "Prediction":
