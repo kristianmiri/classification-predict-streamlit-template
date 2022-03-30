@@ -21,6 +21,26 @@
 	https://docs.streamlit.io/en/latest/
 
 """
+
+import pandas as pd    #importing pandas 
+import numpy as np     #import numpy, not sure if i will need it but we'll see
+
+#importing natural language processing libraries
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import re  #import regular expression
+from textblob import TextBlob    #for spelling correction
+
+#importing visualization libraries
+
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+
+
 # Streamlit dependencies
 import streamlit as st
 import joblib,os
@@ -79,16 +99,24 @@ def main():
 		# You can read a markdown file from supporting resources folder
 		st.markdown("""
 		PLICC ANALYTICS specializes in Information Technology Services. We take 
-		data and arrange it in such a way that it makes sense for business and individual users.
-		We also build and train models that are capable of solving a wide range of classification 
-		problems.
-		""")
+		data and arrange it in such a way that it makes sense for business and individual users. We also build and train models that are capable of solving a wide range of classification problems. 
+		
+		Our team of leading data scientists work tirelessly to make your life and the life of your customers easy.
+		"""
+		)
+
+		
 
 	# Building out the "Information" page
 	if selection == "Information":
 		st.info("General Information")
 		# You can read a markdown file from supporting resources folder
-		st.markdown("Some information here")
+		st.markdown("""
+		The end goal of this research is to look at the tweets from individuals and determine if that particular person believes in the climate change or not. We have created and trained several models that can do this task.  
+
+		Below is the data used to train our model.
+		
+		""")
 
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
