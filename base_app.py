@@ -21,25 +21,6 @@
 	https://docs.streamlit.io/en/latest/
 
 """
-
-import pandas as pd    #importing pandas 
-import numpy as np     #import numpy, not sure if i will need it but we'll see
-
-#importing natural language processing libraries
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import re  #import regular expression
-from textblob import TextBlob    #for spelling correction
-
-#importing visualization libraries
-
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
-
 # Streamlit dependencies
 import streamlit as st
 import joblib,os
@@ -53,7 +34,7 @@ news_vectorizer = open("resources/tfidfvect.pkl","rb")
 tweet_cv = joblib.load(news_vectorizer) # loading your vectorizer from the pkl file
 
 # Load your raw data
-df_train = pd.read_csv("resources/train.csv")
+raw = pd.read_csv("resources/train.csv")
 
 # The main function where we will build the actual app
 def main():
@@ -88,13 +69,7 @@ def main():
 
 		""")
 
-	#Building the "Data Visualization" page
-	if selection == "Data Visualization":
-		st.write("""###Data Visualisation""")
-
-
-
-	# Building out the "About Us" page
+# Building out the "About Us" page
 	if selection == "About Us":
 		st.write("""### PLICC Analytics""")
 		#Company logo
@@ -119,13 +94,13 @@ def main():
 		st.markdown("""
 		The end goal of this research is to look at the tweets from individuals and determine if that particular person believes in the climate change or not. We have created and trained several models that can do this task.  
 
-		Below is the data used to train our model.
+		Below is the data used to train the model.
 		
 		""")
 
 		st.subheader("Raw Twitter data and label")
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
-			st.write(df_train[['sentiment', 'message']]) # will write the df to the page
+			st.write(raw[['sentiment', 'message']]) # will write the df to the page
 
 	# Building out the prediction page
 	if selection == "Prediction":
