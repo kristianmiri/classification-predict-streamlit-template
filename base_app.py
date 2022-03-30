@@ -69,7 +69,7 @@ def main():
 	if selection == "About Us":
 		st.info("""### PLICC Analytics""")
 		#Company logo
-		image = Image.open('imgs/logo_thingy.jpg')
+		image = Image.open('/imgs/logo_thingy.jpg')
 		st.image(image, caption='')
 		# You can read a markdown file from supporting resources folder
 		st.markdown("""
