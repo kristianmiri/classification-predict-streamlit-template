@@ -47,8 +47,12 @@ def main():
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Prediction", "Information", "Data Vizualization", "Meet The Team", "About Us"]
-	selection = st.sidebar.selectbox("Choose Option", options)
+	options = ["Prediction", "Information", "Data Visualization", "Meet The Team", "About Us"]
+	#selection = st.sidebar.selectbox("Choose Option", options)
+
+	with st.sidebar:
+		selection = st.radio("Explore Our Options", options)
+	
 
 	# Building out the "Meet The Team" page
 	if selection == "Meet The Team":
@@ -67,14 +71,17 @@ def main():
 
 # Building out the "About Us" page
 	if selection == "About Us":
-		st.info("""### PLICC Analytics""")
+		st.write("""### PLICC Analytics""")
 		#Company logo
-		image = Image.open('/imgs/logo_thingy.jpg')
+
+		image = Image.open('resources/imgs/logo_thingy.jpeg')
 		st.image(image, caption='')
 		# You can read a markdown file from supporting resources folder
 		st.markdown("""
-
-		
+		PLICC ANALYTICS specializes in Information Technology Services. We take 
+		data and arrange it in such a way that it makes sense for business and individual users.
+		We also build and train models that are capable of solving a wide range of classification 
+		problems.
 		""")
 
 	# Building out the "Information" page
