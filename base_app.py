@@ -24,6 +24,7 @@
 # Streamlit dependencies
 import streamlit as st
 import joblib,os
+from PIL import Image
 
 # Data dependencies
 import pandas as pd
@@ -46,8 +47,35 @@ def main():
 
 	# Creating sidebar with selection box -
 	# you can create multiple pages this way
-	options = ["Prediction", "Information"]
+	options = ["Prediction", "Information", "Data Vizualization", "Meet The Team", "About Us"]
 	selection = st.sidebar.selectbox("Choose Option", options)
+
+	# Building out the "Meet The Team" page
+	if selection == "Meet The Team":
+		st.info("About The Team")
+		# You can read a markdown file from supporting resources folder
+		st.markdown("""
+		
+		Our team consists of 5 talented data scientists and developers from various parts of Africa. These are:
+		- Lungisa Joctrey
+		- Christian Miri
+		- Precious Orekha
+		- Ibrahim Isarki
+		- Caleb Tanko
+
+		""")
+
+# Building out the "About Us" page
+	if selection == "About Us":
+		st.info("""### PLICC Analytics""")
+		#Company logo
+		image = Image.open('imgs/logo thingy.jpg')
+		st.image(image, caption='')
+		# You can read a markdown file from supporting resources folder
+		st.markdown("""
+
+		
+		""")
 
 	# Building out the "Information" page
 	if selection == "Information":
@@ -59,7 +87,7 @@ def main():
 		if st.checkbox('Show raw data'): # data is hidden if box is unchecked
 			st.write(raw[['sentiment', 'message']]) # will write the df to the page
 
-	# Building out the predication page
+	# Building out the prediction page
 	if selection == "Prediction":
 		st.info("Prediction with ML Models")
 		# Creating a text box for user input
@@ -72,6 +100,7 @@ def main():
 			# Try loading in multiple models to give the user a choice
 			predictor = joblib.load(open(os.path.join("resources/Logistic_regression.pkl"),"rb"))
 			prediction = predictor.predict(vect_text)
+
 
 			# When model has successfully run, will print prediction
 			# You can use a dictionary or similar structure to make this output
